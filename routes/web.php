@@ -1,7 +1,10 @@
 <?php
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MenuDetailController; // Pastikan controller ini ada!
+
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MenuController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +29,11 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+
 Route::get('/menu', [MenuController::class, 'index']);
+
+
+
+Route::get('/menu/{id}', [MenuController::class, 'show'])->name('menu.show');
+
+

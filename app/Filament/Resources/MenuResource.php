@@ -47,7 +47,9 @@ public static function table(Table $table): Table
         ->columns([
             TextColumn::make('name')->sortable()->searchable(),
             ImageColumn::make('image'),
-            TextColumn::make('category')->sortable(),
+            TextColumn::make('category')
+            ->sortable()
+            ->searchable(),
         ])
         ->filters([
             SelectFilter::make('category')

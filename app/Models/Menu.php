@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
+    public function details()
+{
+    return $this->hasOne(MenuDetail::class);
+}
 
-    protected $fillable = ['name', 'description', 'price', 'image']; // Tambahkan atribut yang boleh diisi
+
+protected $fillable = ['name', 'description', 'category', 'image'];
+
 }
