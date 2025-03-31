@@ -13,9 +13,7 @@
             <li><a href="{{ url('/menu') }}" class="text-gray-700 hover:text-gray-900 transition-colors">Menu</a></li>
             <li><a href="{{ url('/contact') }}" class="text-gray-700 hover:text-gray-900 transition-colors">Contact</a></li>
         </ul>
-        <button class="ml-4 px-6 py-2 rounded-full border border-black text-black bg-white hover:bg-gray-200 transition whitespace-nowrap">
-            Book A Table
-        </button>
+       
     </div>
 
     <!-- Mobile Menu Toggle -->
@@ -30,11 +28,7 @@
             <li><a href="#about-section" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">About</a></li>
             <li><a href="{{ url('/menu') }}" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Menu</a></li>
             <li><a href="{{ url('/contact') }}" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Contact</a></li>
-            <li>
-                <button class="w-full py-3 px-4 text-left text-gray-700 hover:bg-gray-50">
-                    Book A Table
-                </button>
-            </li>
+            
         </ul>
     </div>
 </nav>

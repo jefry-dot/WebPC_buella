@@ -42,7 +42,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                             </svg>
-                            <span>M8H4+73M, Puseurjaya, Telukjambe Timur, Karawang, Jawa Barat 41361</span>
+                            <a class="hover:underline" href="https://www.google.com/maps/@-6.3215405,107.3050646,3a,75y,218.2h,69.51t/data=!3m7!1e1!3m5!1sW6bqXBLty_oX3qd5ohdLzg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D20.492590130024283%26panoid%3DW6bqXBLty_oX3qd5ohdLzg%26yaw%3D218.19626468743942!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D"
+                                target="_blank">M8H4+73M, Puseurjaya, Telukjambe Timur, Karawang, Jawa Barat 41361</a>
                         </p>
                     </div>
                 </div>
