@@ -29,6 +29,9 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/checkout', function () {
+    return view('checkout');
+});
 
 Route::get('/menu', [MenuController::class, 'index']);
 
