@@ -27,6 +27,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('Nasi Ayam Bu Ella')
+            ->darkMode()
+            ->registration()
             ->colors([
                 'primary' => Color::Amber,
             ])

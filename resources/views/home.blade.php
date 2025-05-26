@@ -11,16 +11,19 @@
     <!-- Navbar -->
     @include('partials.header')
     
-    <header class="relative flex items-center justify-center text-center py-20 bg-cover bg-center min-h-screen" style="background-image: url('logo1.png');">
-        <div class="px-6 max-w-2xl">
-            <h2 class="text-4xl font-bold text-[#2C2F24]">Gurih, Lezat, Bikin Ketagihan!</h2>
-            <p class="text-[#2C2F24] mt-2">Pilih menu kalian, dijamin puas dan harga pasti bersahabat</p>
-            <a href="/menu" class="mt-4 px-6 py-2 rounded-full border border-black text-black bg-white hover:bg-gray-200 transition inline-block">
-                Explore Menu
-            </a>
-            
+    <header class="relative flex items-center justify-center text-center py-12 md:py-20 bg-cover bg-center min-h-screen" style="background-image: url('logo1.png');">
+        <div class="bg-white bg-opacity-80 backdrop-blur-sm p-6 md:p-8 rounded-2xl mx-4 md:mx-0 max-w-[90%] md:max-w-2xl shadow-md">
+            <div class="space-y-3 md:space-y-4">
+                <h1 class="text-2xl md:text-4xl font-bold text-[#2C2F24]">Gurih, Lezat, Bikin Ketagihan!</h1>
+                <p class="text-sm md:text-base text-[#2C2F24]/90">Pilih menu kalian, dijamin puas dan harga pasti bersahabat</p>
+                <a href="/menu" class="inline-block mt-2 md:mt-4 px-5 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full border-2 border-black text-black bg-white hover:bg-gray-50 transition">
+                    Explore Menu
+                </a>
+            </div>
         </div>
     </header>
+    
+
     
     <!-- About Section -->
     @include('partials.about-section')
