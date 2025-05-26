@@ -13,10 +13,10 @@
     </div>
     <!-- Search Bar -->
 <div class="mt-10 flex justify-center">
-    <input 
-        type="text" 
-        id="search-input" 
-        placeholder="Cari menu..." 
+    <input
+        type="text"
+        id="search-input"
+        placeholder="Cari menu..."
         class="w-full max-w-md px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#AD343E] focus:border-[#AD343E] transition"
     />
 </div>
@@ -33,6 +33,11 @@
     <!-- Menu Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-14" id="menu-container">
         @foreach ($menus as $menu)
+        <button
+            onclick="addToCart({{ $menu->id }}, '{{ $menu->name }}', {{ $menu->price }})"
+            class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">
+            Tambah ke Keranjang
+        </button>
         <a href="https://api.whatsapp.com/send?phone=6289510725490&text=Halo%20saya%20ingin%20bertanya%20tentang%20menu%20{{ urlencode($menu->name) }}"
            target="_blank"
            class="menu-item group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 block cursor-pointer"
@@ -51,6 +56,25 @@
         </a>
         @endforeach
     </div>
+    <div class="fixed bottom-5 right-5">
+    <button onclick="showCart()" class="bg-[#AD343E] text-white px-5 py-3 rounded-full shadow-lg hover:bg-red-700">
+        🛒 Lihat Keranjang (<span id="cart-count">0</span>)
+    </button>
+</div>
+
+<div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg max-w-lg w-full shadow-xl">
+        <h2 class="text-2xl font-bold mb-4">Keranjang Anda</h2>
+        <ul id="cart-list" class="space-y-2"></ul>
+        <p class="mt-4 font-semibold">Total: Rp <span id="cart-total">0</span></p>
+
+        <div class="flex justify-end gap-4 mt-6">
+            <button onclick="sendToWhatsapp()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Pesan via WA</button>
+            <button onclick="hideCart()" class="bg-gray-300 px-4 py-2 rounded">Tutup</button>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <script>
@@ -98,6 +122,62 @@ document.getElementById("search-input").addEventListener("input", function () {
         }
     });
 });
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(id, name, price) {
+    cart.push({ id, name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert("Menu ditambahkan ke keranjang!");
+}
+
+function updateCartCount() {
+    document.getElementById("cart-count").innerText = cart.length;
+}
+
+function showCart() {
+    document.getElementById("cart-modal").classList.remove("hidden");
+
+    const list = document.getElementById("cart-list");
+    list.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price;
+        list.innerHTML += `
+            <li class="flex justify-between border-b pb-1">
+                ${item.name} - Rp ${item.price.toLocaleString()}
+                <button onclick="removeItem(${index})" class="text-red-500">❌</button>
+            </li>
+        `;
+    });
+
+    document.getElementById("cart-total").innerText = total.toLocaleString();
+}
+
+function hideCart() {
+    document.getElementById("cart-modal").classList.add("hidden");
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showCart();
+    updateCartCount();
+}
+
+function sendToWhatsapp() {
+    if (cart.length === 0) return alert("Keranjang masih kosong!");
+
+    const message = cart.map(item => `- ${item.name} (Rp ${item.price.toLocaleString()})`).join('%0A');
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const fullMessage = `Halo, saya ingin memesan:%0A${message}%0A%0ATotal: Rp ${total.toLocaleString()}`;
+
+    window.open(`https://api.whatsapp.com/send?phone=6289510725490&text=${fullMessage}`, '_blank');
+}
+updateCartCount();
+
 
 </script>
 @endsection

@@ -40,3 +40,4 @@ Route::get('/menu', [MenuController::class, 'index']);
 Route::get('/menu/{id}', [MenuController::class, 'show'])->name('menu.show');
 
 
+?>
