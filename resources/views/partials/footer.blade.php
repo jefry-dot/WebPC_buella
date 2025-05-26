@@ -59,7 +59,7 @@
 
         <!-- Copyright -->
         <div class="border-t border-gray-600 pt-4 text-center text-gray-400 text-xs">
-            Copyright © 2023 Nasi Ayam Bu Ella. All Rights Reserved
+            Copyright © 2025 Nasi Ayam Bu Ella. All Rights Reserved
         </div>
     </div>
 </footer>
