@@ -11,6 +11,16 @@
             you need to change to  a truly
         </p>
     </div>
+    <!-- Search Bar -->
+<div class="mt-10 flex justify-center">
+    <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Cari menu..." 
+        class="w-full max-w-md px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#AD343E] focus:border-[#AD343E] transition"
+    />
+</div>
+
 
     <!-- Filter Buttons -->
     <div class="flex flex-wrap justify-center gap-4 mt-10">
@@ -31,9 +41,13 @@
                 <img src="{{ Storage::url($menu->image) }}" alt="{{ $menu->name }}" class="w-full h-60 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-300">
             </div>
             <div class="pt-5">
-                <h3 class="text-xl font-bold text-gray-800">{{ $menu->name }}</h3>
-                <p class="text-gray-600 mt-2 leading-relaxed">{{ $menu->description }}</p>
-            </div>
+    <h3 class="text-xl font-bold text-gray-800">{{ $menu->name }}</h3>
+    <p class="text-gray-600 mt-2 leading-relaxed">{{ $menu->description }}</p>
+    <p class="text-[#AD343E] font-semibold text-lg mt-2">
+        {{ 'Rp ' . number_format($menu->price, 0, ',', '.') }}
+    </p>
+</div>
+
         </a>
         @endforeach
     </div>
@@ -67,5 +81,23 @@
             });
         });
     });
+
+    // Search by name
+document.getElementById("search-input").addEventListener("input", function () {
+    const keyword = this.value.toLowerCase();
+    const menuItems = document.querySelectorAll(".menu-item");
+
+    menuItems.forEach(item => {
+        const name = item.querySelector("h3").textContent.toLowerCase();
+        const description = item.querySelector("p").textContent.toLowerCase();
+
+        if (name.includes(keyword) || description.includes(keyword)) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    });
+});
+
 </script>
 @endsection
