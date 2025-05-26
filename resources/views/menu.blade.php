@@ -34,7 +34,6 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-14" id="menu-container">
         @foreach ($menus as $menu)
         <div
-            onclick="addToCart({{ $menu->id }}, '{{ $menu->name }}', {{ $menu->price }})"
             class="menu-item group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 block cursor-pointer"
             data-category="{{ $menu->category }}">
                 <div class="overflow-hidden rounded-xl">
@@ -46,6 +45,12 @@
     <p class="text-[#AD343E] font-semibold text-lg mt-2">
         {{ 'Rp ' . number_format($menu->price, 0, ',', '.') }}
     </p>
+
+    <button
+            onclick="addToCart({{ $menu->id }}, '{{ $menu->name }}', {{ $menu->price }})"
+            class="mt-4 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition duration-300">
+            Tambah ke Keranjang
+    </button>
             </div>
         </div>
         @endforeach
@@ -119,15 +124,23 @@ document.getElementById("search-input").addEventListener("input", function () {
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+
 function addToCart(id, name, price) {
-    cart.push({ id, name, price });
+    const existingItem = cart.find(item => item.id === id);
+    if (existingItem) {
+        existingItem.qty += 1;
+    } else {
+        cart.push({ id, name, price, qty: 1 });
+    }
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
     alert("Menu ditambahkan ke keranjang!");
 }
 
+
 function updateCartCount() {
-    document.getElementById("cart-count").innerText = cart.length;
+    const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById("cart-count").innerText = totalItems;
 }
 
 function showCart() {
@@ -138,11 +151,18 @@ function showCart() {
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.price;
+        total += item.price * item.qty;
         list.innerHTML += `
-            <li class="flex justify-between border-b pb-1">
-                ${item.name} - Rp ${item.price.toLocaleString()}
-                <button onclick="removeItem(${index})" class="text-red-500">❌</button>
+            <li class="flex justify-between items-center border-b pb-1">
+                <div>
+                    ${item.name} - Rp ${item.price.toLocaleString()}
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="decreaseQty(${index})" class="px-2 bg-red-500 text-white">−</button>
+                    <span>${item.qty}</span>
+                    <button onclick="increaseQty(${index})" class="px-2 bg-green-500 text-white">+</button>
+                    <button onclick="removeItem(${index})" class="text-red-500">❌</button>
+                </div>
             </li>
         `;
     });
@@ -161,6 +181,23 @@ function removeItem(index) {
     updateCartCount();
 }
 
+function increaseQty(index) {
+    cart[index].qty += 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showCart();
+    updateCartCount();
+}
+
+function decreaseQty(index) {
+    cart[index].qty -= 1;
+    if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showCart();
+    updateCartCount();
+}
+
 function sendToWhatsapp() {
     if (cart.length === 0) return alert("Keranjang masih kosong!");
 
@@ -168,7 +205,7 @@ function sendToWhatsapp() {
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     const fullMessage = `Halo, saya ingin memesan:%0A${message}%0A%0ATotal: Rp ${total.toLocaleString()}`;
 
-    window.open(`https://api.whatsapp.com/send?phone=6289510725490&text=${fullMessage}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?phone=6281295934058&text=${fullMessage}`, '_blank');
 }
 updateCartCount();
 
