@@ -201,14 +201,16 @@ function decreaseQty(index) {
 function sendToWhatsapp() {
     if (cart.length === 0) return alert("Keranjang masih kosong!");
 
-    const message = cart.map(item => `- ${item.name} (Rp ${item.price.toLocaleString()})`).join('%0A');
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const message = cart.map(item => {
+        const subtotal = item.price * item.qty;
+        return `- ${item.name} x${item.qty} (Rp ${subtotal.toLocaleString()})`;
+    }).join('%0A');
+
+    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const fullMessage = `Halo, saya ingin memesan:%0A${message}%0A%0ATotal: Rp ${total.toLocaleString()}`;
 
     window.open(`https://api.whatsapp.com/send?phone=6281295934058&text=${fullMessage}`, '_blank');
 }
-updateCartCount();
-
 
 </script>
 @endsection
