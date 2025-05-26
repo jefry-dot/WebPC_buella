@@ -26,10 +26,12 @@ class MenuResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+   public static function form(Form $form): Form
 {
     return $form->schema([
-        TextInput::make('name')->required(),
+        TextInput::make('name')
+            ->required()
+            ->unique(ignoreRecord: true), // Cegah duplikat saat create/update
         Textarea::make('description'),
         Select::make('category')
             ->options([
@@ -37,9 +39,15 @@ class MenuResource extends Resource
                 'Minuman' => 'Minuman',
                 'Snack' => 'Snack',
             ])->required(),
+        TextInput::make('price')
+            ->numeric()
+            ->required()
+            ->minValue(0)
+            ->suffix('Rp'),
         FileUpload::make('image')->image(),
     ]);
 }
+
 
 public static function table(Table $table): Table
 {

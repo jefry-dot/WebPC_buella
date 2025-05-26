@@ -14,6 +14,7 @@ class Menu extends Model
 }
 
 
-protected $fillable = ['name', 'description', 'category', 'image'];
+protected $fillable = ['name', 'description', 'category', 'image', 'price'];
+
 
 }
