@@ -33,27 +33,21 @@
     <!-- Menu Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-14" id="menu-container">
         @foreach ($menus as $menu)
-        <button
+        <div
             onclick="addToCart({{ $menu->id }}, '{{ $menu->name }}', {{ $menu->price }})"
-            class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">
-            Tambah ke Keranjang
-        </button>
-        <a href="https://api.whatsapp.com/send?phone=6289510725490&text=Halo%20saya%20ingin%20bertanya%20tentang%20menu%20{{ urlencode($menu->name) }}"
-           target="_blank"
-           class="menu-item group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 block cursor-pointer"
-           data-category="{{ $menu->category }}">
-            <div class="overflow-hidden rounded-xl">
-                <img src="{{ Storage::url($menu->image) }}" alt="{{ $menu->name }}" class="w-full h-60 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-300">
-            </div>
+            class="menu-item group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 block cursor-pointer"
+            data-category="{{ $menu->category }}">
+                <div class="overflow-hidden rounded-xl">
+                    <img src="{{ Storage::url($menu->image) }}" alt="{{ $menu->name }}" class="w-full h-60 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-300">
+                </div>
             <div class="pt-5">
     <h3 class="text-xl font-bold text-gray-800">{{ $menu->name }}</h3>
     <p class="text-gray-600 mt-2 leading-relaxed">{{ $menu->description }}</p>
     <p class="text-[#AD343E] font-semibold text-lg mt-2">
         {{ 'Rp ' . number_format($menu->price, 0, ',', '.') }}
     </p>
-</div>
-
-        </a>
+            </div>
+        </div>
         @endforeach
     </div>
     <div class="fixed bottom-5 right-5">
