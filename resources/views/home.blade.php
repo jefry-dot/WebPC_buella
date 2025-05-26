@@ -7,10 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-sans">
-    
+
     <!-- Navbar -->
     @include('partials.header')
-    
+
     <header class="relative flex items-center justify-center text-center py-12 md:py-20 bg-cover bg-center min-h-screen" style="background-image: url('logo1.png');">
         <div class="bg-white bg-opacity-80 backdrop-blur-sm p-6 md:p-8 rounded-2xl mx-4 md:mx-0 max-w-[90%] md:max-w-2xl shadow-md">
             <div class="space-y-3 md:space-y-4">
@@ -22,13 +22,13 @@
             </div>
         </div>
     </header>
-    {{-- halo --}}
+    {{-- --}}
 
-    
+
     <!-- About Section -->
     @include('partials.about-section')
 
-    
+
     <!-- Menu Section -->
     <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-amber-50">
         <div class="max-w-7xl mx-auto">
@@ -39,7 +39,7 @@
                 </h3>
                 <p class="text-gray-600 text-lg">Setiap hidangan dibuat dengan bahan pilihan dan bumbu rahasia</p>
             </div>
-    
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
                 <!-- Makanan Card -->
                 <div class="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
@@ -63,7 +63,7 @@
                         </a>
                     </div>
                 </div>
-    
+
                 <!-- Mie Card -->
                 <div class="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
                     <div class="p-6 text-center">
@@ -79,7 +79,7 @@
                         </a>
                     </div>
                 </div>
-    
+
                 <!-- Minuman Card -->
                 <div class="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
                     <div class="p-6 text-center">
@@ -95,7 +95,7 @@
                         </a>
                     </div>
                 </div>
-    
+
                 <!-- Lauk Card -->
                 <div class="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
                     <div class="p-6 text-center">
@@ -124,10 +124,10 @@
         @livewire('comment-form')
         @livewire('comment-list')
     </div>
-    
+
     @livewireScripts
 
-    
+
     <!-- Footer -->
     @include('partials.footer')
 </body>
