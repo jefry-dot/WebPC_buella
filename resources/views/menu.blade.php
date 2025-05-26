@@ -7,8 +7,8 @@
     <div class="max-w-2xl mx-auto text-center">
         <h1 class="text-6xl font-bold text-[#2C2F24] mb-6">Our Menu</h1>
         <p class="text-lg text-[#495460] leading-relaxed">
-            We consider all the drivers of change give you the components<br> 
-            you need to change to  a truly 
+            We consider all the drivers of change give you the components<br>
+            you need to change to
         </p>
     </div>
 
@@ -23,8 +23,8 @@
     <!-- Menu Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-14" id="menu-container">
         @foreach ($menus as $menu)
-        <a href="https://api.whatsapp.com/send?phone=6289510725490&text=Halo%20saya%20ingin%20bertanya%20tentang%20menu%20{{ urlencode($menu->name) }}" 
-           target="_blank" 
+        <a href="https://api.whatsapp.com/send?phone=6289510725490&text=Halo%20saya%20ingin%20bertanya%20tentang%20menu%20{{ urlencode($menu->name) }}"
+           target="_blank"
            class="menu-item group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 block cursor-pointer"
            data-category="{{ $menu->category }}">
             <div class="overflow-hidden rounded-xl">
