@@ -8,7 +8,7 @@
         <h1 class="text-6xl font-bold text-[#2C2F24] mb-6">Our Menu</h1>
         <p class="text-lg text-[#495460] leading-relaxed">
             We consider all the drivers of change give you the components<br>
-            you need to change to
+            you need to change to  a truly
         </p>
     </div>
 
